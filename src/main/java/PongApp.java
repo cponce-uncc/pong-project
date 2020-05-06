@@ -87,6 +87,7 @@ public class PongApp extends GameApplication {
     }
 
     private Entity spawnBall(double x, double y) {
+
         return entityBuilder()
                 .at(x, y)
                 .viewWithBBox(new Rectangle(BALL_SIZE, BALL_SIZE))
@@ -150,8 +151,18 @@ public class PongApp extends GameApplication {
     }
 
     private void resetBall() {
+        int ballVelocity;
+        double randomNumber = (Math.random() * 5) - 2.5;
+
+        if (randomNumber > 0){
+            ballVelocity = 1;
+        }
+        else{
+            ballVelocity = -1;
+        }
+
         ball.setPosition(getAppWidth() / 2 - BALL_SIZE / 2, getAppHeight() / 2 - BALL_SIZE / 2);
-        ball.setProperty("velocity", new Point2D(BALL_SPEED, BALL_SPEED));
+        ball.setProperty("velocity", new Point2D(ballVelocity * BALL_SPEED, ballVelocity * BALL_SPEED));
     }
 
 
